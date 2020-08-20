@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="Bookmaker.PersonalAccountWnd.PutMoneyUIControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Bookmaker.PersonalAccountWnd"
+             xmlns:lang = "clr-namespace:Bookmaker.Properties"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock HorizontalAlignment="Center" Grid.ColumnSpan="2" FontSize="25"><Run Text="{x:Static lang:Resources.Cash}"/><Run Text=": "/><Run Text="{Binding ActiveUser.Cash}"/></TextBlock>
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="2">
+            <TextBlock Text="{x:Static lang:Resources.EnterYourCash}" HorizontalAlignment="Center"></TextBlock>
+            <TextBox Text="{Binding Cash, UpdateSourceTrigger=PropertyChanged, 
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true,StringFormat=N2,Mode=TwoWay}" Margin="0 0 0 15"></TextBox>
+            <Button Command="{Binding OutputMoneyCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{Binding CardIcon}" Width="32"></Image>
+                    <TextBlock Text="{x:Static lang:Resources.OutputMoney}"></TextBlock>
+                </StackPanel>
+            </Button>
+            <Button  Command="{Binding PutMoneyCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{Binding CardIcon}" Width="32"></Image>
+                    <TextBlock Text="{x:Static lang:Resources.PutMoney}"></TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Command="{Binding BackToPersonalAccountCommand}" CommandParameter="{Binding ActiveUser}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{Binding ReturnIcon}" Width="32"></Image>
+                    <TextBlock Text="{x:Static lang:Resources.Back}"></TextBlock>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

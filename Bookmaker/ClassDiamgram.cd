@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Bookmaker.ViewModels.BetViewModel" Collapsed="true">
+    <Position X="3.25" Y="1.25" Width="1.5" />
+    <AssociationLine Name="User" Type="Bookmaker.ViewModels.UserViewModel">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.198" Y="-0.205" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAADAgQQAAIABQACCAgAAAEAAAAAiQAAAAAUAAAAAQI=</HashCode>
+      <FileName>ViewModels\ForModels\BetViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Bet" />
+      <Property Name="Match" />
+      <Property Name="User" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Bookmaker.ViewModels.PassportViewModel" Collapsed="true">
+    <Position X="6.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAKAGJAAgAABSAACBwAAAAAAAAAAAAACAACAAAAQAg=</HashCode>
+      <FileName>ViewModels\ForModels\PassportViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Passport" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Bookmaker.ViewModels.UserViewModel">
+    <Position X="3.25" Y="7.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AABDAAQACCIABSABCBwBzAAQAANAggIgARAAQAgAAEA=</HashCode>
+      <FileName>ViewModels\ForModels\UserViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="User" />
+      <Property Name="Passport" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Bookmaker.ViewModels.MatchViewModel" Collapsed="true">
+    <Position X="3.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AICCAgAgAAKAFQAECAiEAIQIAAAAAAAAQEAIAEAQCAA=</HashCode>
+      <FileName>ViewModels\ForModels\MatchViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Match" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Bookmaker.ViewModels.ContractViewModel" Collapsed="true">
+    <Position X="5" Y="2.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="Team" Type="Bookmaker.ViewModels.TeamViewModel" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.5" Y="2.688" />
+        <Point X="6.5" Y="2.596" />
+        <Point X="6.75" Y="2.596" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACggAAAIAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAgI=</HashCode>
+      <FileName>ViewModels\ForModels\ContractViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Match" />
+      <Property Name="Team" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Bookmaker.ViewModels.TeamViewModel" Collapsed="true">
+    <Position X="6.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABBAAAAgIAABQAECAgAAIABAAAQAAAASFAYAAAAiAA=</HashCode>
+      <FileName>ViewModels\ForModels\TeamViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="team" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Bookmaker.ViewModels.AdministratorUIViewModel">
+    <Position X="0.75" Y="7.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>IFA03CFSQIpByUSICwNCwGEgYBpgw7KQDBQmgAIAAFg=</HashCode>
+      <FileName>ViewModels\ForViews\AdministratorUIViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Bookmaker.ViewModels.LoginUIViewModel" Collapsed="true">
+    <Position X="5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAIAAJADAAIAAAAAAAAAAIAAAASAIAAEAEEAAA=</HashCode>
+      <FileName>ViewModels\ForViews\LoginUIViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Bookmaker.ViewModels.PersonalAccountUIViewModel" Collapsed="true">
+    <Position X="6.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gBAQjAAQAIpgAUCIigICwMAAAAJBg6IgBRQCgAAAAAA=</HashCode>
+      <FileName>ViewModels\ForViews\PersonalAccountUIViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Bookmaker.ViewModels.PutMoneyUIViewModel" Collapsed="true">
+    <Position X="3.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAQAEIIEFQAICAgAiAAIAAIAgAAAIAAAACAQAAA=</HashCode>
+      <FileName>ViewModels\ForViews\PutMoneyUIViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Bookmaker.ViewModels.RegisterUIViewModel" Collapsed="true">
+    <Position X="5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAIAAAAIAAAAEAgAAAoAAAAAAAAQIAAAEAA=</HashCode>
+      <FileName>ViewModels\ForViews\RegisterUIViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Bookmaker.ViewModels.SettingsUIViewModel" Collapsed="true">
+    <Position X="6.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>hAYKAAFBCIIDoRFIAQAAAACEAQIABIASJQAACGQAABA=</HashCode>
+      <FileName>ViewModels\ForViews\SettingsUIViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Bookmaker.ViewModels.UserDataUIViewModel" Collapsed="true">
+    <Position X="3.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAIIBAQAIAQAAIAAAAAIAAAAAIAAAACAAABA=</HashCode>
+      <FileName>ViewModels\ForViews\UserDataUIViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Bookmaker.ViewModels.UserRedactorUIViewModel" Collapsed="true">
+    <Position X="5" Y="6.5" Width="1.5" />
+    <InheritanceLine Type="Bookmaker.ViewModels.ViewModelBase" ManuallyRouted="true">
+      <Path>
+        <Point X="1.5" Y="1.062" />
+        <Point X="1.5" Y="7.471" />
+        <Point X="2.542" Y="7.471" Type="JumpStart" />
+        <Point X="2.708" Y="7.471" Type="JumpEnd" />
+        <Point X="5.75" Y="7.471" />
+        <Point X="5.75" Y="6.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AABAAAIAAEIBAQAMAQAAgQAAAgMAAkAAAAAAAAAAABA=</HashCode>
+      <FileName>ViewModels\ForViews\UserRedactorUIViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Bookmaker.ViewModels.VerifyingUIViewModel" Collapsed="true">
+    <Position X="6.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAACgEAAgAAYAQAAAAgAAAgAAIAABQgAIAQAAQA=</HashCode>
+      <FileName>ViewModels\ForViews\VerifyingUIViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Bookmaker.ViewModels.MainViewModel" Collapsed="true">
+    <Position X="0.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAVAAAAAcQAAAiAIAEBAAAAIZAAAAAAIASggWBAAAgA=</HashCode>
+      <FileName>ViewModels\MainViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bookmaker.ViewModels.ViewModelBase" Collapsed="true">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAIACMAAAAAKAIQKAAAAABBgAUIAgEACBAGAAAAAQA=</HashCode>
+      <FileName>ViewModels\ViewModelBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Bookmaker.Models.Bet" Collapsed="true">
+    <Position X="11.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAQQAAAAAAAAAAAAAAAAAAAACAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Models\Bet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bookmaker.Models.Match" Collapsed="true">
+    <Position X="11.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAEAAAEAAAAA=</HashCode>
+      <FileName>Models\Match.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bookmaker.Models.Passport" Collapsed="true">
+    <Position X="11.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAGAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Models\Passport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bookmaker.Models.Team" Collapsed="true">
+    <Position X="11.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAAAAAACEAAAAAAAAA=</HashCode>
+      <FileName>Models\Team.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bookmaker.Models.User" Collapsed="true">
+    <Position X="11.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABCAAQAACIAAAAAAAQAQAAAAAAAAgIAAQAAAAgAAAA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

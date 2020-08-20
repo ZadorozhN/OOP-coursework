@@ -1,0 +1,47 @@
+﻿<Window x:Class="Bookmaker.Services.NotifyBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:lang = "clr-namespace:Bookmaker.Properties"
+        xmlns:i ="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:converters="clr-namespace:Bookmaker.Converters"
+        xmlns:local="clr-namespace:Bookmaker.Services"
+        mc:Ignorable="d"
+        x:Name="NotifyBoxWindow"
+        Title="Bookmaker Notifier" Height="256" Width="384" ResizeMode="NoResize" 
+        ShowInTaskbar="False" WindowStyle="None" WindowStartupLocation="CenterScreen" Icon="{Binding AppIcon}">
+    <Window.Resources>
+        <converters:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="32"></RowDefinition>
+        </Grid.RowDefinitions>
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="MouseDown">
+                <i:InvokeCommandAction Command="{Binding DragMoveCommand}" CommandParameter="{Binding ElementName=NotifyBoxWindow}"></i:InvokeCommandAction>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+        <Image></Image>
+        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+            <Image Source="{Binding AppIcon}"></Image>
+            <TextBlock Text="{x:Static lang:Resources.BookmakerNotifier}" VerticalAlignment="Center" FontSize="15"></TextBlock>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Right">
+            <Button Command="{Binding CloseWindowCommand}" CommandParameter="{Binding ElementName=NotifyBoxWindow}">
+                <Image Source="{Binding CloseIcon}"></Image>
+            </Button>
+        </StackPanel>
+        <TextBlock Grid.Row="1" Text="{Binding Message}" VerticalAlignment="Center"
+                   HorizontalAlignment="Center"></TextBlock>
+        <Button Grid.Row="2" Command="{Binding CloseWindowCommand}" CommandParameter="{Binding ElementName=NotifyBoxWindow}">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{Binding CheckIcon}" Width="32"></Image>
+                <TextBlock Text="{x:Static lang:Resources.Ok}"></TextBlock>
+            </StackPanel>
+        </Button>
+    </Grid>
+</Window>

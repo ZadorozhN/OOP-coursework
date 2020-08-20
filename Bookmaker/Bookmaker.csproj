@@ -1,0 +1,334 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4E89ABD0-0C80-47B2-8890-8F65E25BB968}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Bookmaker</RootNamespace>
+    <AssemblyName>Bookmaker</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=1.2.4.1361, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.1.2.4\lib\net45\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=3.1.1.1361, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.3.1.1\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Helpers\BookmakerContext.cs" />
+    <Compile Include="Command\RelayCommand.cs" />
+    <Compile Include="Config\ConfigManager.cs" />
+    <Compile Include="Converters\ByteArrayToImageConverter.cs" />
+    <Compile Include="Converters\EnumToValuesConverter.cs" />
+    <Compile Include="Interfaces\IPageViewModel.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="LoginWnd\LoginUIControl.xaml.cs">
+      <DependentUpon>LoginUIControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Enums\KindOfSport.cs" />
+    <Compile Include="Models\Enums\MatchResult.cs" />
+    <Compile Include="Models\Enums\State.cs" />
+    <Compile Include="PersonalAccountWnd\MatchPreview.xaml.cs">
+      <DependentUpon>MatchPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoginWnd\RegisterUIControl.xaml.cs">
+      <DependentUpon>RegisterUIControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoginWnd\VerifyingUIControl.xaml.cs">
+      <DependentUpon>VerifyingUIControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mediator\Mediator.cs" />
+    <Compile Include="Models\Bet.cs" />
+    <Compile Include="Models\Match.cs" />
+    <Compile Include="Models\Passport.cs" />
+    <Compile Include="Models\Team.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="PersonalAccountWnd\AdministratorUIControl.xaml.cs">
+      <DependentUpon>AdministratorUIControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalAccountWnd\PersonalAccountUIControl.xaml.cs">
+      <DependentUpon>PersonalAccountUIControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalAccountWnd\PutMoneyUIControl.xaml.cs">
+      <DependentUpon>PutMoneyUIControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalAccountWnd\SettingsUIControl.xaml.cs">
+      <DependentUpon>SettingsUIControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalAccountWnd\UserDataUIControl.xaml.cs">
+      <DependentUpon>UserDataUIControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalAccountWnd\UserRedactorUIControl.xaml.cs">
+      <DependentUpon>UserRedactorUIControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Repositories\BetRepository.cs" />
+    <Compile Include="Repositories\ContractRepository.cs" />
+    <Compile Include="Repositories\MatchRepository.cs" />
+    <Compile Include="Repositories\PassportRepository.cs" />
+    <Compile Include="Repositories\TeamRepository.cs" />
+    <Compile Include="Repositories\UnitOfWork.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Helpers\SaltedHash.cs" />
+    <Compile Include="Services\Services\CloseAppService.cs" />
+    <Compile Include="Services\Services\CollapseWindowService.cs" />
+    <Compile Include="Services\Services\SendEmailService.cs" />
+    <Compile Include="Services\Services\CloseWindowService.cs" />
+    <Compile Include="Services\Wnd\NotifyBox.xaml.cs">
+      <DependentUpon>NotifyBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Wnd\NotifyBoxContext.cs" />
+    <Compile Include="Services\IService.cs" />
+    <Compile Include="Services\Services\LoadPhotoService.cs" />
+    <Compile Include="Services\ServiceManager.cs" />
+    <Compile Include="Services\Services\ShowNotifyBoxService.cs" />
+    <Compile Include="ViewModels\ForViews\AdministratorUIViewModel.cs" />
+    <Compile Include="ViewModels\ForModels\BetViewModel.cs" />
+    <Compile Include="ViewModels\ForModels\ContractViewModel.cs" />
+    <Compile Include="ViewModels\ForViews\LoginUIViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\ForModels\MatchViewModel.cs" />
+    <Compile Include="ViewModels\ForModels\PassportViewModel.cs" />
+    <Compile Include="ViewModels\ForViews\PersonalAccountUIViewModel.cs" />
+    <Compile Include="ViewModels\ForViews\PutMoneyUIViewModel.cs" />
+    <Compile Include="ViewModels\ForViews\RegisterUIViewModel.cs" />
+    <Compile Include="ViewModels\ForViews\SettingsUIViewModel.cs" />
+    <Compile Include="ViewModels\ForModels\TeamViewModel.cs" />
+    <Compile Include="ViewModels\ForViews\UserDataUIViewModel.cs" />
+    <Compile Include="ViewModels\ForModels\UserViewModel.cs" />
+    <Compile Include="ViewModels\ForViews\VerifyingUIViewModel.cs" />
+    <Compile Include="ViewModels\ForViews\UserRedactorUIViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Page Include="LoginWnd\LoginUIControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PersonalAccountWnd\MatchPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoginWnd\RegisterUIControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoginWnd\VerifyingUIControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PersonalAccountWnd\AdministratorUIControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PersonalAccountWnd\PersonalAccountUIControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWnd\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWnd\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="PersonalAccountWnd\PutMoneyUIControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PersonalAccountWnd\SettingsUIControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PersonalAccountWnd\UserDataUIControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PersonalAccountWnd\UserRedactorUIControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Services\Wnd\NotifyBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.en-US.resx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.ru-RU.resx" />
+    <None Include="ClassDiamgram.cd" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\StandartAvatar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\SoccerBall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\Basketball.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\UFC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\NoLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\CloseIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\Logotype.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\AppIco.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\RUS.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\ENG.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Backgrounds\background1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Backgrounds\background2.jpg" />
+    <Resource Include="Resources\Backgrounds\background3.jpg" />
+    <Resource Include="Resources\Backgrounds\background4.jpg" />
+    <Resource Include="Resources\Backgrounds\background5.jpg" />
+    <Resource Include="Resources\Backgrounds\background6.jpg" />
+    <Resource Include="Resources\Backgrounds\background7.jpg" />
+    <Resource Include="Resources\Backgrounds\background8.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\add.png" />
+    <Resource Include="Resources\Icons\block.png" />
+    <Resource Include="Resources\Icons\home.png" />
+    <Resource Include="Resources\Icons\image.png" />
+    <Resource Include="Resources\Icons\personal.png" />
+    <Resource Include="Resources\Icons\search.png" />
+    <Resource Include="Resources\Icons\settings.png" />
+    <Resource Include="Resources\Icons\trash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\card.png" />
+    <Resource Include="Resources\Icons\refresh.png" />
+    <Resource Include="Resources\Icons\return.png" />
+    <Resource Include="Resources\Icons\wallet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\door.png" />
+    <Resource Include="Resources\Icons\nodoor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\send.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\save.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\MaterialDesignThemes.3.1.1\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MaterialDesignThemes.3.1.1\build\MaterialDesignThemes.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" />
+  <Import Project="..\packages\MaterialDesignThemes.3.1.1\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.1.1\build\MaterialDesignThemes.targets')" />
+</Project>

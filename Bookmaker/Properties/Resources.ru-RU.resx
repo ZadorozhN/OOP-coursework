@@ -1,0 +1,417 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddMatch" xml:space="preserve">
+    <value>Добавить матч</value>
+  </data>
+  <data name="AddTeam" xml:space="preserve">
+    <value>Добавить команду</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="AnnounceMatchResult" xml:space="preserve">
+    <value>Объявить результат матча</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>Авторизация</value>
+  </data>
+  <data name="Avatar" xml:space="preserve">
+    <value>Изображение профиля</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="BetOn" xml:space="preserve">
+    <value>Ставка на</value>
+  </data>
+  <data name="BetState" xml:space="preserve">
+    <value>Состояние ставки</value>
+  </data>
+  <data name="Bookmaker" xml:space="preserve">
+    <value>Bookmaker</value>
+  </data>
+  <data name="BookmakerNotifier" xml:space="preserve">
+    <value>Bookmaker Notifier</value>
+  </data>
+  <data name="CancelBet" xml:space="preserve">
+    <value>Отменить ставку</value>
+  </data>
+  <data name="CardId" xml:space="preserve">
+    <value>Номер карты</value>
+  </data>
+  <data name="Cash" xml:space="preserve">
+    <value>Баланс</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Сменить пароль</value>
+  </data>
+  <data name="ChangeTheme" xml:space="preserve">
+    <value>Сменить тему</value>
+  </data>
+  <data name="ChangeUserData" xml:space="preserve">
+    <value>Изменить пользовательские данные</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Код</value>
+  </data>
+  <data name="Coefficient" xml:space="preserve">
+    <value>Коэффициент</value>
+  </data>
+  <data name="CoefficientOnFirstTeam" xml:space="preserve">
+    <value>Коэффициент на первую команду</value>
+  </data>
+  <data name="CoefficientOnSecondTeam" xml:space="preserve">
+    <value>Коэффициент на вторую команду</value>
+  </data>
+  <data name="DateOfBet" xml:space="preserve">
+    <value>Дата ставки</value>
+  </data>
+  <data name="DeleteMatch" xml:space="preserve">
+    <value>Удалить матч</value>
+  </data>
+  <data name="DeleteTeam" xml:space="preserve">
+    <value>Удалить команду</value>
+  </data>
+  <data name="DeleteUser" xml:space="preserve">
+    <value>Удалить пользователя</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Почта</value>
+  </data>
+  <data name="EmailExists" xml:space="preserve">
+    <value>Эта почта уже зарегистрирована</value>
+  </data>
+  <data name="En" xml:space="preserve">
+    <value>En</value>
+  </data>
+  <data name="EnterNewPassword" xml:space="preserve">
+    <value>Введите новый пароль</value>
+  </data>
+  <data name="EnterRecoveryCode" xml:space="preserve">
+    <value>Введите проверочный код</value>
+  </data>
+  <data name="EnterYourCash" xml:space="preserve">
+    <value>Введите вашу сумму</value>
+  </data>
+  <data name="EnterYourEmail" xml:space="preserve">
+    <value>Введите вашу почту</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="FirstTeam" xml:space="preserve">
+    <value>Первая команда</value>
+  </data>
+  <data name="ForgotYourPassword" xml:space="preserve">
+    <value>Забыли ваш пароль?</value>
+  </data>
+  <data name="HaveAnAccount" xml:space="preserve">
+    <value>Есть аккаунт?</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="IncorrectPassword" xml:space="preserve">
+    <value>Неверный пароль, он может содержать только 6-32 буквы, цифры и *</value>
+  </data>
+  <data name="IncorrectPasswordOrLogin" xml:space="preserve">
+    <value>Неправильный логин или пароль</value>
+  </data>
+  <data name="IsAdministrator" xml:space="preserve">
+    <value>Администратор</value>
+  </data>
+  <data name="IsBlocked" xml:space="preserve">
+    <value>Заблокирован</value>
+  </data>
+  <data name="KindOfSport" xml:space="preserve">
+    <value>Вид спорта</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+  <data name="LoadPassportPhoto" xml:space="preserve">
+    <value>Загрузить фото паспорта</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Логин</value>
+  </data>
+  <data name="Logotype" xml:space="preserve">
+    <value>Логотип</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Выход</value>
+  </data>
+  <data name="MakeABet" xml:space="preserve">
+    <value>Совершить ставку</value>
+  </data>
+  <data name="Match" xml:space="preserve">
+    <value>Матч</value>
+  </data>
+  <data name="MatchDeleted" xml:space="preserve">
+    <value>Матч был удален</value>
+  </data>
+  <data name="Matches" xml:space="preserve">
+    <value>Матчи</value>
+  </data>
+  <data name="MatchId" xml:space="preserve">
+    <value>Номер матча</value>
+  </data>
+  <data name="MatchResult" xml:space="preserve">
+    <value>Результат матча</value>
+  </data>
+  <data name="MatchResultAnnounced" xml:space="preserve">
+    <value>Результаты матча уже объявлены</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="OutputMoney" xml:space="preserve">
+    <value>Вывести средства</value>
+  </data>
+  <data name="PassportData" xml:space="preserve">
+    <value>Данные паспорта</value>
+  </data>
+  <data name="PassportExists" xml:space="preserve">
+    <value>Такой паспорт уже зарегистрирован</value>
+  </data>
+  <data name="PassportID" xml:space="preserve">
+    <value>Номер паспорта</value>
+  </data>
+  <data name="PassportPhoto" xml:space="preserve">
+    <value>Фото паспорта</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="PasswordChanged" xml:space="preserve">
+    <value>Пароль изменен</value>
+  </data>
+  <data name="Patronymic" xml:space="preserve">
+    <value>Отчество</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Номер телефона</value>
+  </data>
+  <data name="PutMoney" xml:space="preserve">
+    <value>Пополнить счет</value>
+  </data>
+  <data name="PutOutputMoney" xml:space="preserve">
+    <value>Пополнение счета и вывод средств</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Зарегистрировать</value>
+  </data>
+  <data name="RegisterDate" xml:space="preserve">
+    <value>Дата регистрация</value>
+  </data>
+  <data name="Registration" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
+  <data name="Result" xml:space="preserve">
+    <value>Результат</value>
+  </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>Сохранить изменения</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="SearchByUserName" xml:space="preserve">
+    <value>Поиск по имени пользователя</value>
+  </data>
+  <data name="SecondTeam" xml:space="preserve">
+    <value>Вторая команда</value>
+  </data>
+  <data name="SelectedAccountDeleted" xml:space="preserve">
+    <value>Выбранный аккаунт был удален</value>
+  </data>
+  <data name="SelectImage" xml:space="preserve">
+    <value>Выбрать изображение</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Дата начала</value>
+  </data>
+  <data name="TeamDeleted" xml:space="preserve">
+    <value>Команда была удалена</value>
+  </data>
+  <data name="TeamExists" xml:space="preserve">
+    <value>Команда уже существует</value>
+  </data>
+  <data name="TeamName" xml:space="preserve">
+    <value>Название команды</value>
+  </data>
+  <data name="TeamsList" xml:space="preserve">
+    <value>Список команд</value>
+  </data>
+  <data name="UserBlocked" xml:space="preserve">
+    <value>Пользователь заблокирован</value>
+  </data>
+  <data name="UserCannotBeDeleted" xml:space="preserve">
+    <value>Пользователь не может быть удален</value>
+  </data>
+  <data name="UserData" xml:space="preserve">
+    <value>Пользовательские данные</value>
+  </data>
+  <data name="UserDeleted" xml:space="preserve">
+    <value>Пользователь был удален</value>
+  </data>
+  <data name="UserIsNotFound" xml:space="preserve">
+    <value>Пользователь не найден</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Имя пользователя</value>
+  </data>
+  <data name="UserNameExists" xml:space="preserve">
+    <value>Пользователь с таким именем уже существует</value>
+  </data>
+  <data name="UsersList" xml:space="preserve">
+    <value>Список пользователей</value>
+  </data>
+  <data name="Verify" xml:space="preserve">
+    <value>Потвердить</value>
+  </data>
+  <data name="Verifying" xml:space="preserve">
+    <value>Потверждение</value>
+  </data>
+  <data name="VS" xml:space="preserve">
+    <value>VS</value>
+  </data>
+  <data name="WinDefUndef" xml:space="preserve">
+    <value>Побед/Поражений/Неизвестно</value>
+  </data>
+  <data name="WinRate" xml:space="preserve">
+    <value>Процент побед</value>
+  </data>
+  <data name="YourAccountDeleted" xml:space="preserve">
+    <value>Ваш аккаунт был удален</value>
+  </data>
+  <data name="YourBets" xml:space="preserve">
+    <value>Ваши ставки</value>
+  </data>
+</root>

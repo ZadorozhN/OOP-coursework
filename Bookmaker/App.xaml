@@ -1,0 +1,47 @@
+﻿<Application x:Class="Bookmaker.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Bookmaker"
+             xmlns:viewmodels="clr-namespace:Bookmaker.ViewModels"
+             xmlns:views="clr-namespace:Bookmaker.LoginWnd"
+             xmlns:viewsuseraccount="clr-namespace:Bookmaker.PersonalAccountWnd"
+             >
+    
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.DeepPurple.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <DataTemplate DataType="{x:Type viewmodels:LoginUIViewModel}">
+                <views:LoginUIControl />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:RegisterUIViewModel}">
+                <views:RegisterUIControl />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:VerifyingUIViewModel}">
+                <views:VerifyingUIControl />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:PersonalAccountUIViewModel}">
+                <viewsuseraccount:PersonalAccountUIControl/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:AdministratorUIViewModel}">
+                <viewsuseraccount:AdministratorUIControl/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:SettingsUIViewModel}">
+                <viewsuseraccount:SettingsUIControl/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:UserDataUIViewModel}">
+                <viewsuseraccount:UserDataUIControl/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:PutMoneyUIViewModel}">
+                <viewsuseraccount:PutMoneyUIControl/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:UserRedactorUIViewModel}">
+                <viewsuseraccount:UserRedactorUIControl/>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

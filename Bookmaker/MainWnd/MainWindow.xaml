@@ -1,0 +1,44 @@
+﻿<Window x:Class="Bookmaker.MainWnd.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bookmaker"
+        xmlns:com="clr-namespace:Bookmaker.Command"
+        xmlns:lang = "clr-namespace:Bookmaker.Properties"
+        xmlns:i ="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+        Title="Bookmaker"
+        mc:Ignorable="d" Height="768" Width="1024" 
+        Icon="{Binding AppIcon}" ResizeMode="CanResizeWithGrip" WindowStyle="None"
+        x:Name="AppWindow"
+        >
+    <Window.Background>
+        <ImageBrush ImageSource="{Binding Background}"/>
+    </Window.Background>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="MouseDown">
+                <i:InvokeCommandAction Command="{Binding DragMoveCommand}" CommandParameter="{Binding ElementName=AppWindow}"></i:InvokeCommandAction>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+        <Image>
+        </Image>
+        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+            <Image Source="{Binding AppIcon}" Height="32"></Image>
+            <TextBlock Text="{x:Static lang:Resources.Bookmaker}" FontSize="15" VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Command="{Binding CollapseWindowCommand}" CommandParameter="{Binding ElementName=AppWindow}">
+                <Image Source="{Binding SearchIcon}"></Image>
+            </Button>
+            <Button Command="{Binding CloseWindowCommand}" CommandParameter="{Binding ElementName=AppWindow}">
+                <Image Source="{Binding CloseIcon}"></Image>
+            </Button>
+        </StackPanel>
+        <ContentControl Content="{Binding CurrentPageViewModel}" Grid.Row="1" />
+    </Grid>
+</Window>

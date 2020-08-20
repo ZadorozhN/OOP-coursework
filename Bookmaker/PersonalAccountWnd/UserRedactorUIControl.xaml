@@ -1,0 +1,149 @@
+﻿<UserControl x:Class="Bookmaker.PersonalAccountWnd.UserRedactorUIControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Bookmaker.PersonalAccountWnd"
+             xmlns:lang = "clr-namespace:Bookmaker.Properties"
+             xmlns:converters="clr-namespace:Bookmaker.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converters:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="0.6*"></RowDefinition>
+            <RowDefinition Height="32"></RowDefinition>
+            <RowDefinition Height="32"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel DataContext="{Binding ActiveUser}">
+            <Border>
+                <StackPanel Margin="0 0 0 15">
+                    <TextBlock Text="{x:Static lang:Resources.Email}"/>
+                    <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged, 
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
+                </StackPanel>
+            </Border>
+
+            <Border>
+                <StackPanel Margin="0 0 0 15">
+                    <TextBlock Text="{x:Static lang:Resources.CardId}"/>
+                    <TextBox x:Name="CardIDBox" Text="{Binding CardId, UpdateSourceTrigger=PropertyChanged, 
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
+                </StackPanel>
+            </Border>
+
+            <Border>
+                <StackPanel Margin="0 0 0 15">
+                    <TextBlock Text="{x:Static lang:Resources.PhoneNumber}"/>
+                    <TextBox x:Name="PhoneNumberBox" Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged, 
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
+                </StackPanel>
+            </Border>
+
+            <Border>
+                <StackPanel Margin="0 0 0 15">
+                    <TextBlock Text="{x:Static lang:Resources.Cash}"/>
+                    <TextBox Text="{Binding Cash, UpdateSourceTrigger=PropertyChanged, 
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}"></TextBox>
+                </StackPanel>
+            </Border>
+
+            <CheckBox IsChecked="{Binding IsAdministrator, UpdateSourceTrigger=PropertyChanged, 
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}" 
+                      Content="{x:Static lang:Resources.IsAdministrator}"></CheckBox>
+            <CheckBox IsChecked="{Binding IsBlocked, UpdateSourceTrigger=PropertyChanged, 
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}" 
+                      Content="{x:Static lang:Resources.IsBlocked}"></CheckBox>
+
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" DataContext="{Binding ActiveUser.Passport}">
+            <Border>
+                <StackPanel Margin="0 0 0 15">
+                    <TextBlock Text="{x:Static lang:Resources.FirstName}"/>
+                    <TextBox x:Name="FirstNameBox" Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged, 
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
+                </StackPanel>
+            </Border>
+
+            <Border>
+                <StackPanel Margin="0 0 0 15">
+                    <TextBlock Text="{x:Static lang:Resources.LastName}"/>
+                    <TextBox x:Name="LastNameBox" Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged, 
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}" />
+                </StackPanel>
+            </Border>
+
+            <Border>
+                <StackPanel Margin="0 0 0 15">
+                    <TextBlock Text="{x:Static lang:Resources.Patronymic}"/>
+                    <TextBox x:Name="PatronymicBox" Text="{Binding Patronymic, UpdateSourceTrigger=PropertyChanged, 
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+
+        <Grid Grid.Row="1" Grid.Column="0" DataContext="{Binding ActiveUser.Passport}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="16"></RowDefinition>
+                <RowDefinition Height="32"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="{x:Static lang:Resources.PassportPhoto}"/>
+            <Button Grid.Row="1"  Command="{Binding LoadPassportPhotoCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{Binding ImageIcon}" Width="32"></Image>
+                    <TextBlock Text="{x:Static lang:Resources.SelectImage}"></TextBlock>
+                </StackPanel>
+            </Button>
+            <Image Grid.Row="2" Source="{Binding Photo,Converter={StaticResource ByteArrayToImageConverter}, UpdateSourceTrigger=PropertyChanged, 
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="1" DataContext="{Binding ActiveUser}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="16"></RowDefinition>
+                <RowDefinition Height="32"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="{x:Static lang:Resources.Avatar}"/>
+            <Button Grid.Row="1"  Command="{Binding LoadAvatarCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{Binding ImageIcon}" Width="32"></Image>
+                    <TextBlock Text="{x:Static lang:Resources.SelectImage}"></TextBlock>
+                </StackPanel>
+            </Button>
+            <Image Grid.Row="2" Source="{Binding Avatar,Converter={StaticResource ByteArrayToImageConverter}}"/>
+        </Grid>
+
+        <Button Grid.Row="2" Grid.Column="0"
+                Command="{Binding SaveUserChangesCommand}" CommandParameter="{Binding ActiveUser}">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{Binding SaveIcon}" Width="32"></Image>
+                <TextBlock Text="{x:Static lang:Resources.SaveChanges}"></TextBlock>
+            </StackPanel>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="1"
+                Command="{Binding BackToAdministratorAccountCommand}" CommandParameter="{Binding Administrator}">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{Binding ReturnIcon}" Width="32"></Image>
+                <TextBlock Text="{x:Static lang:Resources.Back}"></TextBlock>
+            </StackPanel>
+        </Button>
+
+        <Button Grid.Row="3" Grid.ColumnSpan="2" Command="{Binding DeleteUserCommand}">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{Binding TrashIcon}" Width="32"></Image>
+                <TextBlock Text="{x:Static lang:Resources.DeleteUser}"></TextBlock>
+            </StackPanel>
+        </Button>
+    </Grid>
+</UserControl>

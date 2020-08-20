@@ -1,0 +1,566 @@
+﻿<UserControl x:Class="Bookmaker.PersonalAccountWnd.AdministratorUIControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Bookmaker.PersonalAccountWnd"
+             xmlns:lang = "clr-namespace:Bookmaker.Properties"
+             xmlns:converters="clr-namespace:Bookmaker.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converters:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="0" Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Image Name="Avatar" Source="{Binding ActiveUser.Avatar,Converter={StaticResource ByteArrayToImageConverter}}"/>
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{x:Static lang:Resources.UserName}" FontSize="15"></TextBlock>
+                    <TextBlock Text="{Binding ActiveUser.UserName}" FontSize="15" Margin="15 0 0 0"></TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <StackPanel Grid.Row="1">
+            <Button Grid.Row="0" Grid.Column="3" Command="{Binding FullRefreshCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{Binding RefreshIcon}" Width="32"></Image>
+                    <TextBlock Text="{x:Static lang:Resources.Refresh}"></TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Command="{Binding GoToUserDataUIViewCommand}" CommandParameter="{Binding ActiveUser}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{Binding PersonalIcon}" Width="32"></Image>
+                    <TextBlock Text="{x:Static lang:Resources.UserData}"></TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Command="{Binding GoToSettingsUIViewCommand}" CommandParameter="{Binding ActiveUser}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{Binding SettingIcon}" Width="32"></Image>
+                    <TextBlock Text="{x:Static lang:Resources.Settings}"></TextBlock>
+                </StackPanel>
+            </Button>
+            <Button x:Name="LogoutButton" Grid.Row="1" Grid.Column="3" Command="{Binding LogOutCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{Binding DoorIcon}" Width="32"></Image>
+                    <TextBlock Text="{x:Static lang:Resources.Logout}"></TextBlock>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+        <TabControl Grid.Column="1" Grid.RowSpan="2" BorderThickness="4 4 4 4" BorderBrush="{Binding ElementName=LogoutButton,Path=Background}">
+            <TabControl.Background>
+                <ImageBrush></ImageBrush>
+            </TabControl.Background>
+            <TabControl.Resources>
+                <Style TargetType="TabItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TabItem">
+                                <Grid Name="Panel">
+                                    <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,2"/>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="Panel" Property="Background" Value="LightSkyBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="False">
+                                        <Setter TargetName="Panel" Property="Background" Value="White" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.Resources>
+            <TabItem Header="{x:Static lang:Resources.AnnounceMatchResult}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Column="0" Grid.ColumnSpan="2">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="32"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Button Grid.Column="0" Command="{Binding AllMatchesCommand}" Content="{x:Static lang:Resources.All}"/>
+                            <Button Grid.Column="1" Command="{Binding OnlyUFCMatchesCommand}">
+                                <Image Source="{Binding UFCIcon}"/>
+                            </Button>
+                            <Button Grid.Column="2" Command="{Binding OnlyBasketBallMatchesCommand}">
+                                <Image Source="{Binding BasketBallIcon}"/>
+                            </Button>
+                            <Button Grid.Column="3" Command="{Binding OnlySoccerMatchesCommand}">
+                                <Image Source="{Binding SoccerIcon}"/>
+                            </Button>
+                            <DataGrid Grid.Row="1" Grid.ColumnSpan="4" x:Name="Matches" ItemsSource="{Binding UndefinedMatches}"
+                                      AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserSortColumns="True"
+                                      SelectionMode="Single">
+
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.Id}" Binding="{Binding Id}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.StartDate}" Binding="{Binding StartDate}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.MatchResult}" Binding="{Binding Result}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.FirstTeam}" Binding="{Binding FirstTeam}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.SecondTeam}" Binding="{Binding SecondTeam}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.CoefficientOnFirstTeam}" Binding="{Binding CoefficientOnFirstTeam}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.CoefficientOnSecondTeam}" Binding="{Binding CoefficientOnSecondTeam}"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </Border>
+                    <Border Grid.Row="1"  BorderThickness="0 4 2 0" BorderBrush="{Binding ElementName=LogoutButton,Path=Background}">
+                        <Grid Margin="20">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="32"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Text="{x:Static lang:Resources.AnnounceMatchResult}" FontSize="20"></TextBlock>
+                            <Grid Grid.Row="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <ComboBox SelectedValue="{Binding ActiveMatch.Result, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                  ItemsSource="{Binding ActiveMatch.MatchResults, UpdateSourceTrigger=PropertyChanged}"></ComboBox>
+                                <Button Grid.Row="1" Command="{Binding AnnounceMatchResultCommand}" CommandParameter="{Binding ElementName=Matches, Path=SelectedItem}" >
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{Binding CheckIcon}" Width="32"></Image>
+                                        <TextBlock Text="{x:Static lang:Resources.AnnounceMatchResult}"></TextBlock>
+                                    </StackPanel>
+                                </Button>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <Border Grid.Column="1" Grid.Row="1" BorderThickness="2 4 0 0" BorderBrush="{Binding ElementName=LogoutButton,Path=Background}">
+                        <local:MatchPreview Grid.Column="1" Grid.Row="1" Margin="20" DataContext="{Binding ElementName=Matches, Path=SelectedItem}">
+                        </local:MatchPreview>
+                    </Border>
+                </Grid>
+            </TabItem>
+            <TabItem Header="{x:Static lang:Resources.UsersList}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Border Grid.ColumnSpan="2">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="32"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <DataGrid x:Name="Users" ItemsSource="{Binding Users}" 
+                  AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False"
+                                      SelectionMode="Single">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.Id}" Binding="{Binding Id}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.UserName}" Binding="{Binding UserName}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.Email}" Binding="{Binding Email}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.Cash}" Binding="{Binding Cash}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.PhoneNumber}" Binding="{Binding PhoneNumber}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.CardId}" Binding="{Binding CardId}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.RegisterDate}" Binding="{Binding RegisterDate}"></DataGridTextColumn>
+                                    <DataGridCheckBoxColumn Header="{x:Static lang:Resources.IsAdministrator}" Binding="{Binding IsAdministrator}"></DataGridCheckBoxColumn>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.FirstName}" Binding="{Binding Passport.FirstName}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.LastName}" Binding="{Binding Passport.LastName}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.Patronymic}" Binding="{Binding Passport.Patronymic}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.PassportID}" Binding="{Binding Passport.Id}"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Button Command="{Binding SearchByUserNameCommand}" CommandParameter="{Binding ElementName=SearchBox, Path=Text}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{Binding SearchIcon}" Width="32"></Image>
+                                        <TextBlock Text="{x:Static lang:Resources.SearchByUserName}"></TextBlock>
+                                    </StackPanel>
+                                </Button>
+                                <TextBox Grid.Column="1" x:Name="SearchBox"></TextBox>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <Border Grid.ColumnSpan="2" Grid.Row="1"  BorderThickness="0 4 0 0" BorderBrush="{Binding ElementName=LogoutButton,Path=Background}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="32"></RowDefinition>
+                                <RowDefinition Height="32"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <DataGrid x:Name="UserBet" ItemsSource="{Binding ElementName=Users, Path=SelectedItem.Bets}"
+                  AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" SelectionMode="Single">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.Id}" Binding="{Binding Id}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.Cash}" Binding="{Binding Cash}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.BetOn}" Binding="{Binding BetOn}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.BetState}" Binding="{Binding BetState}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.MatchId}" Binding="{Binding Match.Id}"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <Button Grid.Row="1" Command="{Binding CancelBetCommand}" 
+                                    CommandParameter="{Binding ElementName=UserBet,Path=SelectedItem}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding ReturnIcon}" Width="32"></Image>
+                                    <TextBlock Text="{x:Static lang:Resources.CancelBet}"></TextBlock>
+                                </StackPanel>
+                            </Button>
+                            <Button Grid.Row="2" Command="{Binding GoToUserRedactorUIViewCommand}" 
+                                    CommandParameter="{Binding ElementName=Users,Path=SelectedItem}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding SettingIcon}" Width="32"></Image>
+                                    <TextBlock Text="{x:Static lang:Resources.ChangeUserData}"></TextBlock>
+                                </StackPanel>
+                            </Button>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </TabItem>
+            <TabItem Header="{x:Static lang:Resources.TeamsList}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Column="0"  BorderThickness="0 0 2 2" BorderBrush="{Binding ElementName=LogoutButton,Path=Background}">
+                        <DataGrid x:Name="Teams" ItemsSource="{Binding Teams}"
+                                      AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserSortColumns="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="{x:Static lang:Resources.TeamName}" Binding="{Binding TeamName}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="{x:Static lang:Resources.WinRate}" Binding="{Binding WinRate}"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Border>
+                    <Border Grid.Column="1"  BorderThickness="2 0 0 2" BorderBrush="{Binding ElementName=LogoutButton,Path=Background}">
+                        <DataGrid DataContext="{Binding ElementName=Teams, Path=SelectedItem}" ItemsSource="{Binding Contracts}" AutoGenerateColumns="False"
+                                  CanUserAddRows="False" SelectionMode="Single">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="{x:Static lang:Resources.MatchId}" Binding="{Binding Match.Id}" ></DataGridTextColumn>
+                                <DataGridTextColumn Header="{x:Static lang:Resources.Match}" Binding="{Binding Match}" ></DataGridTextColumn>
+                                <DataGridTextColumn Header="{x:Static lang:Resources.MatchResult}" Binding="{Binding Match.Result}" ></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Border>
+                    <Border Grid.Row="1" Grid.Column="1" BorderThickness="2 2 0 0" BorderBrush="{Binding ElementName=LogoutButton,Path=Background}">
+                        <Grid Margin="20">
+                            <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20" Text="{x:Static lang:Resources.Logotype}"></TextBlock>
+                            <Image DataContext="{Binding ElementName=Teams, Path=SelectedItem}" 
+                                   Source="{Binding Logotype,Converter={StaticResource ByteArrayToImageConverter}}"></Image>
+                        </Grid>
+                    </Border>
+                    <Border Grid.Row="2" BorderThickness="0 2 2 0" BorderBrush="{Binding ElementName=LogoutButton,Path=Background}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="32"></RowDefinition>
+                                <RowDefinition Height="32"></RowDefinition>
+                                <RowDefinition Height="32"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Button Grid.Row="1" DataContext="{Binding ElementName=Teams, Path=SelectedItem}" Command="{Binding LoadLogotypeCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding ImageIcon}" Width="32"></Image>
+                                    <TextBlock Text="{x:Static lang:Resources.SelectImage}"></TextBlock>
+                                </StackPanel>
+                            </Button>
+                            <Button Grid.Row="2" Command="{Binding SaveTeamChangesCommand}" CommandParameter="{Binding ElementName=Teams, Path=SelectedItem}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding SaveIcon}" Width="32"></Image>
+                                    <TextBlock Text="{x:Static lang:Resources.SaveChanges}"></TextBlock>
+                                </StackPanel>
+                            </Button>
+                            <Button Grid.Row="3" Command="{Binding DeleteTeamCommand}" CommandParameter="{Binding ElementName=Teams, Path=SelectedItem}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding TrashIcon}" Width="32"></Image>
+                                    <TextBlock Text="{x:Static lang:Resources.DeleteTeam}"></TextBlock>
+                                </StackPanel>
+                            </Button>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </TabItem>
+            <TabItem Header="{x:Static lang:Resources.Matches}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Border Grid.ColumnSpan="2" BorderThickness="0 0 0 4" BorderBrush="{Binding ElementName=LogoutButton,Path=Background}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="32"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="32"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Button Grid.Column="0" Command="{Binding AllMatchesCommand}" Content="{x:Static lang:Resources.All}"/>
+                            <Button Grid.Column="1" Command="{Binding OnlyUFCMatchesCommand}">
+                                <Image Source="{Binding UFCIcon}"/>
+                            </Button>
+                            <Button Grid.Column="2" Command="{Binding OnlyBasketBallMatchesCommand}">
+                                <Image Source="{Binding BasketBallIcon}"/>
+                            </Button>
+                            <Button Grid.Column="3" Command="{Binding OnlySoccerMatchesCommand}">
+                                <Image Source="{Binding SoccerIcon}"/>
+                            </Button>
+                            <DataGrid Grid.Row="1" Grid.ColumnSpan="4" x:Name="AllMatches" ItemsSource="{Binding Matches}"
+                                      AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserSortColumns="True"
+                                      SelectionMode="Single">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.Id}" Binding="{Binding Id}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.StartDate}" Binding="{Binding StartDate}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.MatchResult}" Binding="{Binding Result}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.FirstTeam}" Binding="{Binding FirstTeam}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.SecondTeam}" Binding="{Binding SecondTeam}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.CoefficientOnFirstTeam}" Binding="{Binding CoefficientOnFirstTeam}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.CoefficientOnSecondTeam}" Binding="{Binding CoefficientOnSecondTeam}"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <Button Grid.Row="2" Grid.ColumnSpan="4" Command="{Binding DeleteMatchCommand}" CommandParameter="{Binding ElementName=AllMatches, Path=SelectedItem}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding TrashIcon}" Width="32"></Image>
+                                    <TextBlock Text="{x:Static lang:Resources.DeleteMatch}"></TextBlock>
+                                </StackPanel>
+                            </Button>
+                        </Grid>
+                    </Border>
+                    <Border Grid.Row="1" Grid.ColumnSpan="2">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="32"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <DataGrid x:Name="MatchBets" DataContext="{Binding ElementName=AllMatches, Path=SelectedItem}"
+                              ItemsSource="{Binding BetsOnThisMatch}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False"
+                                      SelectionMode="Single">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.Id}" Binding="{Binding Id}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.UserName}" Binding="{Binding User.UserName}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.Cash}" Binding="{Binding Cash}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.BetOn}" Binding="{Binding BetOn}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="{x:Static lang:Resources.BetState}" Binding="{Binding BetState}"></DataGridTextColumn>
+                                </DataGrid.Columns>
+
+                            </DataGrid>
+                            <Button Grid.Row="1" Command="{Binding CancelBetCommand}" 
+                                    CommandParameter="{Binding ElementName=MatchBets,Path=SelectedItem}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding ReturnIcon}" Width="32"></Image>
+                                    <TextBlock Text="{x:Static lang:Resources.CancelBet}"></TextBlock>
+                                </StackPanel>
+                            </Button>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </TabItem>
+            <TabItem Header="{x:Static lang:Resources.AddMatch}">
+                <Grid Margin="20">
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Text="{x:Static lang:Resources.AddMatch}" FontSize="20"></TextBlock>
+                    <Border BorderThickness="4" BorderBrush="{Binding ElementName=LogoutButton,Path=Background}"
+                        VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="300" MinHeight="300">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.3*"></RowDefinition>
+                                <RowDefinition Height="0.3*"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="32"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.ColumnSpan="2">
+                                <TextBlock Text="{x:Static lang:Resources.StartDate}"></TextBlock>
+                                <DatePicker SelectedDate="{Binding NewMatch.StartDate}"></DatePicker>
+                                <TextBlock Text="{x:Static lang:Resources.KindOfSport}"></TextBlock>
+                                <ComboBox SelectedValue="{Binding NewMatch.KindOfSport, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding NewMatch.KindsOfSport, UpdateSourceTrigger=PropertyChanged}">
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1">
+                                <TextBlock Text="{x:Static lang:Resources.FirstTeam}"></TextBlock>
+                                <ComboBox SelectedValue="{Binding NewMatch.FirstTeam, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding SortedTeams, UpdateSourceTrigger=PropertyChanged}"></ComboBox>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Grid.Row="1">
+                                <TextBlock Text="{x:Static lang:Resources.SecondTeam}"></TextBlock>
+                                <ComboBox SelectedValue="{Binding NewMatch.SecondTeam, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding SortedTeams, UpdateSourceTrigger=PropertyChanged}"></ComboBox>
+                            </StackPanel>
+                            <Image Grid.Row="2" Source="{Binding NewMatch.FirstTeam.Logotype,Converter={StaticResource ByteArrayToImageConverter}}"/>
+                            <Image Grid.Row="2" Grid.Column="2" Source="{Binding NewMatch.SecondTeam.Logotype,Converter={StaticResource ByteArrayToImageConverter}}"/>
+                            <Button Grid.Row="3" Grid.ColumnSpan="2" Command="{Binding AddMatchCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding AddIcon}" Width="32"></Image>
+                                    <TextBlock Text="{x:Static lang:Resources.AddMatch}"></TextBlock>
+                                </StackPanel>
+                            </Button>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </TabItem>
+            <TabItem Header="{x:Static lang:Resources.AddTeam}">
+                <Grid Margin="20">
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Text="{x:Static lang:Resources.AddTeam}" FontSize="20"></TextBlock>
+                    <Border BorderThickness="4" BorderBrush="{Binding ElementName=LogoutButton,Path=Background}"
+                        VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Grid VerticalAlignment="Center" HorizontalAlignment="Center" MinWidth="300" MinHeight="300">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.5*"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="32"></RowDefinition>
+                                <RowDefinition Height="32"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <StackPanel>
+                                <TextBlock Text="{x:Static lang:Resources.TeamName}"></TextBlock>
+                                <TextBox Text="{Binding ActiveTeam.TeamName, UpdateSourceTrigger=PropertyChanged, 
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}"></TextBox>
+                                <TextBlock Text="{x:Static lang:Resources.KindOfSport}"></TextBlock>
+                                <ComboBox SelectedValue="{Binding ActiveTeam.KindOfSport, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding ActiveTeam.KindsOfSport, UpdateSourceTrigger=PropertyChanged}"></ComboBox>
+                            </StackPanel>
+                            <Image Grid.Row="1" Source="{Binding ActiveTeam.Logotype,Converter={StaticResource ByteArrayToImageConverter}}"/>
+                            <Button Grid.Row="2" Command="{Binding ActiveTeam.LoadLogotypeCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding ImageIcon}" Width="32"></Image>
+                                    <TextBlock Text="{x:Static lang:Resources.SelectImage}"></TextBlock>
+                                </StackPanel>
+                            </Button>
+                            <Button Grid.Row="3" Command="{Binding AddTeamCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding AddIcon}" Width="32"></Image>
+                                    <TextBlock Text="{x:Static lang:Resources.AddTeam}"></TextBlock>
+                                </StackPanel>
+                            </Button>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </TabItem>
+            <TabItem Header="{x:Static lang:Resources.Search}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <DataGrid x:Name="SearchResult" ItemsSource="{Binding SearchResult}" 
+                  AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False"
+                                      SelectionMode="Single">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="{x:Static lang:Resources.Id}" Binding="{Binding Id}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="{x:Static lang:Resources.UserName}" Binding="{Binding UserName}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="{x:Static lang:Resources.Email}" Binding="{Binding Email}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="{x:Static lang:Resources.Cash}" Binding="{Binding Cash}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="{x:Static lang:Resources.PhoneNumber}" Binding="{Binding PhoneNumber}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="{x:Static lang:Resources.CardId}" Binding="{Binding CardId}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="{x:Static lang:Resources.RegisterDate}" Binding="{Binding RegisterDate}"></DataGridTextColumn>
+                            <DataGridCheckBoxColumn Header="{x:Static lang:Resources.IsAdministrator}" Binding="{Binding IsAdministrator}"></DataGridCheckBoxColumn>
+                            <DataGridTextColumn Header="{x:Static lang:Resources.FirstName}" Binding="{Binding Passport.FirstName}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="{x:Static lang:Resources.LastName}" Binding="{Binding Passport.LastName}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="{x:Static lang:Resources.Patronymic}" Binding="{Binding Passport.Patronymic}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="{x:Static lang:Resources.PassportID}" Binding="{Binding Passport.Id}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="32"></RowDefinition>
+                            <RowDefinition Height="32"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <StackPanel DataContext="{Binding SearchedUser}">
+                            <Border>
+                                <StackPanel Margin="0 0 0 15">
+                                    <TextBlock Text="{x:Static lang:Resources.UserName}"/>
+                                    <TextBox Text="{Binding UserName}"/>
+                                </StackPanel>
+                            </Border>
+                            <Border>
+                                <StackPanel Margin="0 0 0 15">
+                                    <TextBlock Text="{x:Static lang:Resources.Email}"/>
+                                    <TextBox Text="{Binding Email}"/>
+                                </StackPanel>
+                            </Border>
+                            <Border>
+                                <StackPanel Margin="0 0 0 15">
+                                    <TextBlock Text="{x:Static lang:Resources.FirstName}"/>
+                                    <TextBox Text="{Binding Passport.FirstName}"/>
+                                </StackPanel>
+                            </Border>
+                            <Border>
+                                <StackPanel Margin="0 0 0 15">
+                                    <TextBlock Text="{x:Static lang:Resources.LastName}"/>
+                                    <TextBox Text="{Binding Passport.LastName}"/>
+                                </StackPanel>
+                            </Border>
+                            <Border>
+                                <StackPanel Margin="0 0 0 15">
+                                    <TextBlock Text="{x:Static lang:Resources.Patronymic}"/>
+                                    <TextBox Text="{Binding Passport.Patronymic}"/>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+
+                        <Button Grid.Row="1" Command="{Binding SearchUserCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding SearchIcon}" Width="32"></Image>
+                                <TextBlock Text="{x:Static lang:Resources.Search}"></TextBlock>
+                            </StackPanel>
+                        </Button>
+                        
+                        <Button Grid.Row="2" Command="{Binding GoToUserRedactorUIViewCommand}" 
+                                    CommandParameter="{Binding ElementName=SearchResult,Path=SelectedItem}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding SettingIcon}" Width="32"></Image>
+                                <TextBlock Text="{x:Static lang:Resources.ChangeUserData}"></TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

@@ -1,0 +1,7 @@
+/.vs/*
+/packages/*
+/Bookmaker/bin/*
+/Bookmaker/obj/*
+*.doc
+*.docx
+*.sln
